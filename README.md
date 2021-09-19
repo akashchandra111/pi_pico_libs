@@ -9,5 +9,5 @@ Raspberry Pi Pico 2040 self-made libraries
 >     src/main.c
 >     src/mpu6050_sensor.c)
 > 
-> target_include_directories(${PROJECT_NAME} PUBLIC include/
+> target_include_directories(${PROJECT_NAME} PUBLIC include/)
 
