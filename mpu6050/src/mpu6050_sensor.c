@@ -1,6 +1,16 @@
 #include "mpu6050_sensor.h"
 #include <stdint.h>
 
+void mpu6050_init(i2c_inst_t *i2c_instance, int pin_SDA, int pin_SCL)   {
+    i2c_init(i2c_instance, 1 * MHZ);
+    gpio_set_function(pin_SCL, GPIO_FUNC_I2C);
+    gpio_set_function(pin_SDA, GPIO_FUNC_I2C);
+
+    // need to enable the pullups
+    gpio_pull_up(pin_SCL);
+    gpio_pull_up(pin_SDA);
+}
+
 void mpu6050_sensor_reset(i2c_inst_t *i2c_instance)	{
 	uint8_t registers[] = {0x6B, 0x00};
 	i2c_write_blocking(i2c_instance, MPU6050_ADDR, registers, sizeof(registers), false);

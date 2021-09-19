@@ -1,11 +1,12 @@
+#pragma once
+
 #include <stdint.h>
-#include <stdio.h>
-#include "pico/stdlib.h"
-#include "pico/time.h"
 #include "hardware/gpio.h"
 #include "hardware/i2c.h"
 
 #define MPU6050_ADDR 0x68
+
+#define MHZ 100000
 
 // Accelerometer data type
 typedef struct mpu6050_accelerelometer	{
@@ -38,6 +39,7 @@ typedef struct mpu6050_sensor_data	{
 	int16_t temp;
 } mpu6050_sensor_data_t;
 
+void mpu6050_init(i2c_inst_t *i2c_instance, int SDA, int SCL);
 void mpu6050_sensor_reset(i2c_inst_t *i2c_instance);
 void mpu6050_sensor_get_accelerometer_reading(i2c_inst_t *i2c_instance, mpu6050_accelerometer_t *accelerometer);
 void mpu6050_sensor_get_gyrometer_reading(i2c_inst_t *i2c_instance, mpu6050_gryometer_t *gyrometer);
